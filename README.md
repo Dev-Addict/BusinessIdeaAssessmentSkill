@@ -2,6 +2,7 @@
 
 [![Validate](https://img.shields.io/badge/validation-local%20%2B%20CI-0f766e)](.github/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version: v0.2.1](https://img.shields.io/badge/version-v0.2.1-2563eb)](CHANGELOG.md)
 
 A reusable agent skill for turning an early business idea into a current,
 source-bound market and feasibility study, then completing the useful follow-on
@@ -36,6 +37,22 @@ Install the complete `skills/business-idea-assessment/` directory, not only
 `SKILL.md`, because the workflow uses its bundled references and validators.
 Review third-party skill instructions before granting an agent access to your
 files, shell, browser, or external services.
+
+### Skills CLI (recommended)
+
+After publishing the repository on GitHub, replace `YOUR_GITHUB_USERNAME` and
+install the skill globally with:
+
+```bash
+npx skills add YOUR_GITHUB_USERNAME/BusinessIdeaAssessmentSkill \
+  --skill business-idea-assessment -g
+```
+
+To verify discovery without installing it:
+
+```bash
+npx skills add YOUR_GITHUB_USERNAME/BusinessIdeaAssessmentSkill --list
+```
 
 ### Codex, OpenCode, and Pi: one portable location
 

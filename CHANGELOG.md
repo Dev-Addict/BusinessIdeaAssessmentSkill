@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.1 — 2026-10-19
+
+- Added the Skills CLI installation and discovery commands to `README.md`.
+- Added a visible release-version badge.
+
 ## 0.2.0 — 2026-10-19
 
 - Added documented personal and project installs for Codex, Claude Code,
