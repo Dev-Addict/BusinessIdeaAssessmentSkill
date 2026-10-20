@@ -53,6 +53,32 @@ break_even_units = fixed_cost ÷ contribution_per_unit
 Use the correct formula for the model; do not force product terminology onto a
 service, software, marketplace, or licensing business.
 
+## Mandatory numerical success estimate
+
+`success_matrix.csv` must contain at least these columns:
+
+- `subjective_success_probability_low_pct`
+- `subjective_success_probability_high_pct`
+- `confidence`
+- `probability_basis`
+- `key_dependency`
+
+Both probability bounds must be numeric percentages from 0 through 100 for
+every assessed offer × strategy row, and the lower bound must not exceed the
+upper bound. Do not use `NA`, `unknown`, or a qualitative label instead of the
+bounds. Whole percentages are normally sufficient.
+
+`success_matrix.md` must define the success event and time horizon, identify the
+closest reference class or explain why none is credible, document the
+assumptions and estimation method, discuss evidence for and against the range,
+and state what observations would materially raise or lower it. The executive
+README must display the recommended route's numerical range and confidence.
+
+Use [numerical-success-estimation.md](numerical-success-estimation.md) for the
+required judgment method. A wide low-confidence range is acceptable; omitting
+the number because customers, payments, retention, or comparable data are
+unavailable is not.
+
 ## Claim and source discipline
 
 Put a direct URL and access/observation date beside material external claims.
@@ -69,5 +95,6 @@ When one source supports only part of a row, state the boundary. Examples:
 
 Link every deliverable directly from the root README. Readers should not need to
 search the directory. State which numbers are assumptions, the decision date,
-and how to replace estimates with observed evidence without erasing history.
+the recommended route's numerical probability range, and how to replace
+estimates with observed evidence without erasing history.
 

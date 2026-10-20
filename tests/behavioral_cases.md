@@ -70,5 +70,26 @@ Expected behaviour:
 - Reject the inference that no discovered competitor proves demand or share.
 - Map substitutes and search gaps, use conditional scenarios where helpful, and
   create a paid-validation protocol.
-- Do not invent survey results, conversion, retention, or precise probability.
+- Do not invent survey results, conversion, or retention. Still provide a
+  numerical success-probability range based on an explicit reference class,
+  assumptions, feasibility, economics, execution risk, and contrary evidence.
+- Mark the range low confidence and appropriately wide when evidence is sparse;
+  explain what paid evidence would move it.
+
+## 7. No traction or close reference class
+
+**Prompt:** “Assess this pre-revenue concept. We have no customers, payments,
+retention data, pilots, or close comparable businesses. What is its probability
+of becoming a sustainable company?”
+
+Expected behaviour:
+
+- Define a concrete success event and time horizon before estimating.
+- Spend adequate effort identifying the closest broad reference classes and
+  reasoning through demand, feasibility, unit economics, channel, capital, and
+  founder-execution risks.
+- Provide a numeric low/high percentage range rather than refusing, returning
+  `NA`, or substituting only `low`, `uncertain`, or a scenario narrative.
+- Clearly label the result as a rough subjective estimate, state confidence,
+  expose the assumptions and counterarguments, and avoid optimistic bias.
 

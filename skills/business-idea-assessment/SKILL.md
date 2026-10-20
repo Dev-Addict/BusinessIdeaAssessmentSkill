@@ -47,6 +47,10 @@ are missing, strategic routes are tied, or an external action may be useful.
    and [references/deliverable-contract.md](references/deliverable-contract.md).
    Research and write the initial study. Use current primary sources and direct
    URLs beside material claims.
+   Read [references/numerical-success-estimation.md](references/numerical-success-estimation.md)
+   before estimating outcomes. Every completed assessment must contain a
+   numerical success-probability range even when direct traction evidence is
+   absent.
 3. Run the **evidence gate** in
    [references/review-routine.md](references/review-routine.md) before relying on
    collected inputs in financial or success models. Fix defects immediately.
@@ -78,8 +82,17 @@ are missing, strategic routes are tied, or an external action may be useful.
 - Treat technical feasibility, safety, approvals, customer acceptance, supplier
   capability, funding, and shelf life as unproven until required evidence exists.
 - Show formulas and units. Use ranges and scenarios where uncertainty is high.
-  Label success probabilities as subjective, evidence-informed judgment—not
-  measured startup survival statistics.
+- Always estimate a numerical probability range for the defined success event
+  and time horizon. Missing customers, payments, retention, trials, or a close
+  reference class must widen the range and lower confidence; they are not a
+  reason to omit the estimate or replace it with only a qualitative rating.
+- Build the range from the closest defensible reference class, explicit
+  assumptions, disconfirming evidence, feasibility, economics, channel access,
+  capital, and execution risk. Use the same rubric across alternatives and do
+  not favour the founders' preferred concept.
+- Label probabilities as subjective, evidence-informed estimates—not measured
+  startup survival statistics. Explain the basis, important unknowns, what
+  would move the range, and why the estimate may be rough.
 - Cite source URLs and access dates. Record inaccessible sources and a practical
   way to close the gap.
 - Do not invent survey results, quotes, conversion rates, certifications,
@@ -102,7 +115,8 @@ assessment does not authorize those actions.
 - Make the root `README.md` link every deliverable and state research date,
   geography, currency, recommendation, confidence, next decision, and limits.
 - Give CSVs explicit headers and one unit per numeric column. Use `NA` instead
-  of fabricated values.
+  of fabricated observed inputs, but never use `NA` for the required numerical
+  success-probability bounds.
 - Keep assumptions and source observations separately identifiable.
 - Run `python3 scripts/validate_assessment.py <assessment-directory>` from this
   skill after each structural review gate. The script proves structural

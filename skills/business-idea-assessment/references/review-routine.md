@@ -37,7 +37,14 @@ Check:
 - cross-file agreement on prices, volumes, yield/utilization, margin, capital,
   timing, success definition, and recommended concepts;
 - total market versus obtainable sales distinction;
-- unsupported precision, invented survey data, and unqualified probabilities;
+- a numerical probability range for every success-matrix row and prominently
+  for the recommended route, with numeric bounds from 0 through 100 and lower
+  not greater than upper;
+- reference class, assumptions, contrary evidence, confidence, and material
+  range-moving evidence documented without invented customer data;
+- unsupported precision, invented survey data, omitted numerical estimates,
+  and probabilities presented as observed or statistically measured when they
+  are judgmental;
 - legal/safety/technical statements for scope and appropriate caveats; and
 - README coverage and local-link resolution.
 
@@ -68,7 +75,8 @@ Review the entire package as if encountering it for the first time.
 2. Recalculate high-impact rows independently from their written formulas.
 3. Trace the executive recommendation backward to sources and assumptions.
 4. Search for overclaims: `guaranteed`, `approved`, `safe`, `available locally`,
-   `proven demand`, fixed shelf life, exact success odds, and similar language.
+   `proven demand`, fixed shelf life, probabilities described as measured facts,
+   and similar language. Also search for a missing numerical probability range.
 5. Confirm every unresolved external fact is still labelled and routed.
 6. Make fixes and rerun until a complete pass finds no new internal defect.
 

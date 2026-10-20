@@ -29,6 +29,12 @@ DATE_HEADERS = {
     "next_action_date",
 }
 DATE_EXCEPTIONS = {"", "NA", "not_applicable", "rolling", "ongoing", "TBD"}
+SUCCESS_PROBABILITY_COLUMNS = {
+    "subjective_success_probability_low_pct",
+    "subjective_success_probability_high_pct",
+    "confidence",
+    "key_dependency",
+}
 
 
 def validate(root: Path) -> dict[str, object]:
@@ -107,6 +113,56 @@ def validate(root: Path) -> dict[str, object]:
                             f"invalid source URL: {path.relative_to(root)}:{line_number}:{column}"
                         )
 
+    success_matrix = root / "success_matrix.csv"
+    if not success_matrix.is_file():
+        errors.append("missing required numerical success matrix: success_matrix.csv")
+    else:
+        try:
+            with success_matrix.open(newline="", encoding="utf-8-sig") as handle:
+                reader = csv.DictReader(handle)
+                success_rows = list(reader)
+                success_headers = set(reader.fieldnames or [])
+        except (OSError, UnicodeError, csv.Error) as exc:
+            errors.append(f"cannot validate numerical success matrix: {exc}")
+        else:
+            missing_columns = sorted(SUCCESS_PROBABILITY_COLUMNS - success_headers)
+            if missing_columns:
+                errors.append(
+                    "success_matrix.csv missing required columns: "
+                    + ", ".join(missing_columns)
+                )
+            if not success_rows:
+                errors.append("success_matrix.csv contains no assessed combinations")
+
+            low_column = "subjective_success_probability_low_pct"
+            high_column = "subjective_success_probability_high_pct"
+            if low_column in success_headers and high_column in success_headers:
+                for line_number, row in enumerate(success_rows, start=2):
+                    values: dict[str, float] = {}
+                    for column in (low_column, high_column):
+                        raw_value = (row.get(column) or "").strip()
+                        try:
+                            value = float(raw_value)
+                        except ValueError:
+                            errors.append(
+                                "non-numeric success probability: "
+                                f"success_matrix.csv:{line_number}:{column}={raw_value or '<blank>'}"
+                            )
+                            continue
+                        if not 0 <= value <= 100:
+                            errors.append(
+                                "success probability outside 0-100: "
+                                f"success_matrix.csv:{line_number}:{column}={raw_value}"
+                            )
+                            continue
+                        values[column] = value
+                    if low_column in values and high_column in values:
+                        if values[low_column] > values[high_column]:
+                            errors.append(
+                                "success probability bounds reversed: "
+                                f"success_matrix.csv:{line_number}"
+                            )
+
     for path in markdown:
         try:
             body = path.read_text(encoding="utf-8")
@@ -160,9 +216,16 @@ def self_test() -> int:
             "record_id,access_date,source_url\nA1,2026-10-19,https://example.com/source\n",
             encoding="utf-8",
         )
+        (root / "success_matrix.csv").write_text(
+            "concept_id,subjective_success_probability_low_pct,"
+            "subjective_success_probability_high_pct,confidence,probability_basis,"
+            "key_dependency\nC1,15,35,low,adjacent_reference_class,paid_validation\n",
+            encoding="utf-8",
+        )
         (root / "notes.md").write_text("# Notes\n", encoding="utf-8")
         (root / "README.md").write_text(
-            "# Assessment\n\n- [Data](data.csv)\n- [Notes](notes.md)\n",
+            "# Assessment\n\n- [Data](data.csv)\n"
+            "- [Success matrix](success_matrix.csv)\n- [Notes](notes.md)\n",
             encoding="utf-8",
         )
         valid = validate(root)
@@ -174,9 +237,30 @@ def self_test() -> int:
             "record_id,access_date,source_url\nA1,19-10-2026,not-a-url\n\n",
             encoding="utf-8",
         )
+        (root / "success_matrix.csv").write_text(
+            "concept_id,subjective_success_probability_low_pct,"
+            "subjective_success_probability_high_pct,confidence,probability_basis,"
+            "key_dependency\nC1,80,20,low,unsupported,unknown\n",
+            encoding="utf-8",
+        )
         invalid = validate(root)
-        if len(invalid["errors"]) < 3:
+        if len(invalid["errors"]) < 4 or not any(
+            "success probability bounds reversed" in error for error in invalid["errors"]
+        ):
             print(json.dumps(invalid, indent=2))
+            return 1
+
+        (root / "success_matrix.csv").write_text(
+            "concept_id,subjective_success_probability_low_pct,"
+            "subjective_success_probability_high_pct,confidence,probability_basis,"
+            "key_dependency\nC1,NA,20,low,unsupported,unknown\n",
+            encoding="utf-8",
+        )
+        nonnumeric = validate(root)
+        if not any(
+            "non-numeric success probability" in error for error in nonnumeric["errors"]
+        ):
+            print(json.dumps(nonnumeric, indent=2))
             return 1
     print("SELF_TEST_PASS")
     return 0

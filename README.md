@@ -2,7 +2,7 @@
 
 [![Validate](https://img.shields.io/badge/validation-local%20%2B%20CI-0f766e)](.github/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version: v0.2.1](https://img.shields.io/badge/version-v0.2.1-2563eb)](CHANGELOG.md)
+[![Version: v0.3.0](https://img.shields.io/badge/version-v0.3.0-2563eb)](CHANGELOG.md)
 
 A reusable agent skill for turning an early business idea into a current,
 source-bound market and feasibility study, then completing the useful follow-on
@@ -19,6 +19,9 @@ known internal defect remains.
 - Maps direct competitors and substitutes with observed prices and source dates.
 - Models reachable customers, channels, operations, unit economics, cash needs,
   and five-year scenarios without false precision.
+- Always produces a neutral, bias-checked, evidence-informed numerical
+  probability range for the defined success outcome, even when direct traction
+  evidence is absent.
 - Researches current compliance, technical feasibility, funding, and support.
 - Produces risks, routes to market, stop conditions, and a ranked recommendation.
 - Executes safe autonomous next steps such as outreach drafts, RFQs, compliance
@@ -195,6 +198,7 @@ skills/business-idea-assessment/
 │   ├── assessment-workflow.md
 │   ├── autonomous-follow-on.md
 │   ├── deliverable-contract.md
+│   ├── numerical-success-estimation.md
 │   ├── review-routine.md
 │   └── user-checkpoints.md
 └── scripts/
@@ -233,7 +237,8 @@ This skill produces research and decision support, not legal, accounting,
 medical, engineering, safety, investment, or regulatory approval. A complete
 desk study cannot prove demand, eligibility, technical performance, supplier
 capability, funding, or future business success. Those remain explicit external
-evidence gates.
+evidence gates. Numerical success ranges are rough decision-support estimates,
+not measured survival statistics or guarantees.
 
 ## License
 

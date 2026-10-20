@@ -74,9 +74,13 @@ founder-compensation outcome by a stated year is usually clearer than revenue
 alone.
 
 - Create an offer × sales-strategy matrix.
-- Give subjective probability ranges only when evidence supports useful
-  judgment. Explain reference class, method, dependencies, confidence, and what
-  would move the range.
+- Always provide a numerical probability range for every sensible combination
+  and prominently for the recommended route. Evidence gaps affect the range and
+  confidence; they do not permit a qualitative-only result.
+- Apply the method in
+  [numerical-success-estimation.md](numerical-success-estimation.md). Explain
+  reference class, assumptions, judgment method, contrary evidence,
+  dependencies, confidence, and what would move the range.
 - Model conservative, base, and optimistic years 1–5. Separate revenue, gross
   margin, operating cost, cash need, profit, and founder compensation.
 - Include break-even and sensitivity to the variables most capable of changing
