@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a generalizable workflow or validation improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Decision problem
+      description: Describe the recurring assessment failure or missing capability.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Smallest useful change
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Scope and safety boundaries
+      description: Explain where the proposal should not apply.
+

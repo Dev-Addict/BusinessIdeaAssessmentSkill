@@ -1,0 +1,8 @@
+interface:
+  display_name: "Business Idea Assessment"
+  short_description: "Research and validate a business idea end to end"
+  brand_color: "#0F766E"
+  default_prompt: "Use $business-idea-assessment to assess this business idea, execute safe autonomous next steps, and deliver a reviewed decision package."
+
+policy:
+  allow_implicit_invocation: true
